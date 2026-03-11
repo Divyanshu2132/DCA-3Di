@@ -31,16 +31,6 @@ The local codebase contains the VAE and DCA parts of that pipeline, plus batch-s
 - [`translate.sh`](https://github.com/Divyanshu2132/DCA-3Di/blob/main/translate.sh): SLURM wrapper for an external translation script
 - [`train.sh`](https://github.com/Divyanshu2132/DCA-3Di/blob/main/train.sh): SLURM wrapper for VAE training
 
-
-## Paper Explanation
-
-The paper describes the conceptual model in terms of the 20-state 3Di alphabet. The code in this repository uses a 21-channel input representation in [`model/generator.py`](https://github.com/Divyanshu2132/DCA-3Di/blob/main/generator.py). In practice:
-
-- the scientific workflow is the same as in the paper: 3Di MSA -> VAE latent space -> decoded grid -> DCA Hamiltonian landscape
-- the local loader is slightly more permissive than the simplified 20-state description in the manuscript
-
-That distinction matters if you want the README to reflect both the paper and the actual implementation.
-
 ## End-To-End Workflow
 
 The workflow implied by the paper and partially implemented here is:
@@ -54,8 +44,6 @@ The workflow implied by the paper and partially implemented here is:
 7. Fit a DCA Potts model on the same 3Di alignment.
 8. Score each decoded sequence with the DCA Hamiltonian.
 9. Visualize the resulting structural energy landscape and compare clustering, annotation, contacts, or generated sequences.
-
-The paper further describes translating decoded 3Di sequences back to amino acid sequences with the ProstT5 decoder, then validating them with annotation tools and structure prediction. That downstream generation step is not fully implemented in this repository.
 
 ## Repository Layout
 
@@ -120,19 +108,6 @@ The included data and notebook match the structural-landscape workflow described
 - [`data/globin/entropy_map.npy`](https://github.com/Divyanshu2132/DCA-3Di/blob/main/data/globin/entropy_map.npy): precomputed decoder entropy map
 - [`Analysis.ipynb`](https://github.com/Divyanshu2132/DCA-3Di/blob/main/Analysis.ipynb): notebook for computing Hamiltonians on a grid and visualizing the landscape
 
-## Requirements
-
-There is no lockfile or environment file in the repository. Based on imports, you will need at least:
-
-- Python 3
-- TensorFlow / Keras
-- NumPy
-- Biopython
-- SciPy
-- Numba
-- Matplotlib
-- Jupyter
-
 Minimal install:
 
 ```bash
@@ -148,14 +123,6 @@ If you want to reproduce the full paper workflow, you will also need access to P
 - paths are placeholders
 - `train.sh` points to a different repository directory name
 - `translate.sh` expects an external translation script
-
-## Current Limitations
-
-- ProstT5 translation is external to this repository.
-- Back-translation from decoded 3Di tokens to amino acid sequences is not implemented here.
-- No pinned software environment is provided.
-- The VAE latent dimension is hard-coded to 2 in the main training script.
-- The codebase captures the core landscape-generation logic from the paper, but not every evaluation step described in the manuscript.
 
 ## Citation
 
