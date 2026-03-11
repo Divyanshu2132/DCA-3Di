@@ -10,7 +10,7 @@ Shukla D, Martin J, Morcos F, Potoyan DA. *A Structure-Aware Generative AI Frame
 
 ## Project Overview
 
-The method in the paper builds structure-informed protein landscapes by combining:
+This method builds structure-informed protein landscapes by combining:
 
 1. Multiple sequence alignments (MSAs) for a protein family
 2. ProstT5 translation from amino acid sequences to 3Di tokens
@@ -20,9 +20,7 @@ The method in the paper builds structure-informed protein landscapes by combinin
 6. Hamiltonian scoring of decoded sequences to define an energy landscape
 
 
-## What This Repository Implements
-
-The local codebase contains the VAE and DCA parts of that pipeline, plus batch-script placeholders for the ProstT5 translation step.
+## Implementation
 
 - [`run_vae.py`](https://github.com/Divyanshu2132/DCA-3Di/blob/main/run_vae.py): trains the VAE on a FASTA alignment
 - [`model/`](https://github.com/Divyanshu2132/DCA-3Di/blob/main/model): VAE model definition, sampling layer, and FASTA one-hot encoding utilities
